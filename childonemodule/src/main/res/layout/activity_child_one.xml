@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChildOneActivity">
+
+
+    <Button
+        android:id="@+id/btn_childone_one"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="click"
+        android:text="main"
+        />
+    <Button
+        android:id="@+id/btn_childone_two"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="click"
+        android:text="async"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_childone_one"
+        />
+    <Button
+        android:id="@+id/btn_childone_three"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="click"
+        android:text="posting"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_childone_two"
+        />
+    <Button
+        android:id="@+id/btn_childone_four"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="click"
+        android:text="main_ordered"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_childone_three"
+        />
+    <Button
+        android:id="@+id/btn_childone_five"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="click"
+        android:text="background"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_childone_four"
+        />
+
+</android.support.constraint.ConstraintLayout>

@@ -7,6 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+
+import com.matt.childone.ChildOneActivity;
+import com.matt.childone.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -24,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),SecondActivity.class));
+            }
+        });
+        findViewById(R.id.childone_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ChildOneActivity.class));
             }
         });
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
@@ -44,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onStart: ");
         }
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -76,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onStop: ");
         }
+        EventBus.getDefault().post(new MessageEvent(6,"main data"));
+//        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -99,5 +116,57 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if(event == null){
+            return;
+        }
+
+        Log.i(TAG, "onMessageEvent: "+event.toString());
+        switch (event.getMsgId()){
+            case 1:
+
+                break;
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void onMessageBackEvent(MessageEvent event) {
+        if(event == null){
+            return;
+        }
+
+        Log.i(TAG, "onMessageBackEvent: "+event.toString());
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onMessagePostingEvent(MessageEvent event) {
+        if(event == null){
+            return;
+        }
+
+        Log.i(TAG, "onMessagePostingEvent: "+event.toString());
+    }
+
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onMessageAsyncEvent(MessageEvent event) {
+        if(event == null){
+            return;
+        }
+
+        Log.i(TAG, "onMessageAsyncEvent: "+event.toString());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
+    public void onMessageMainOrderedEvent(MessageEvent event) {
+        if(event == null){
+            return;
+        }
+
+        Log.i(TAG, "onMessageMainOrderedEvent: "+event.toString());
     }
 }
