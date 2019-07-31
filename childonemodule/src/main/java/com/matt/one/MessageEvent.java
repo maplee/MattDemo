@@ -1,4 +1,4 @@
-package com.matt.childone;
+package com.matt.one;
 
 public class MessageEvent {
 

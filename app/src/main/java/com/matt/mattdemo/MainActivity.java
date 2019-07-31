@@ -2,14 +2,15 @@ package com.matt.mattdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-
-import com.matt.childone.ChildOneActivity;
-import com.matt.childone.MessageEvent;
+import com.matt.one.MessageEvent;
+import com.matt.two.ChildTwoActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.childone_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ChildOneActivity.class));
+                startActivity(new Intent(getApplicationContext(), ChildTwoActivity.class));
             }
         });
         int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
@@ -48,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
         int viewHeight=mainBtn.getMeasuredHeight();
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onCreate: "+viewWidth+","+viewHeight);
+            Log.i(TAG, "onCreate: "+getCallingActivity().toString());
         }
+
+
 
     }
 
@@ -67,6 +71,30 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onResume: ");
         }
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (BuildConfig.DEBUG) {
+                    Log.i(TAG, "run: 8");
+                }
+            }
+        },8000);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (BuildConfig.DEBUG) {
+                    Log.i(TAG, "run: 3");
+                }
+            }
+        },3000);
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (BuildConfig.DEBUG) {
+                    Log.i(TAG, "run: 1");
+                }
+            }
+        });
     }
 
     @Override
@@ -169,4 +197,16 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "onMessageMainOrderedEvent: "+event.toString());
     }
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void dispatchMessage(Message msg) {
+            super.dispatchMessage(msg);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
 }

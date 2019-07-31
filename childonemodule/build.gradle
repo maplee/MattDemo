@@ -20,6 +20,16 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            def dirs = ['main', 'p_one', 'p_two']
+            dirs.each { dir ->
+                java.srcDir("src/$dir/java")
+                res.srcDir("src/$dir/res")
+            }
+        }
+    }
+
 }
 
 dependencies {

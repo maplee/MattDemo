@@ -1,9 +1,12 @@
-package com.matt.childone;
+package com.matt.one;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+
+import com.matt.two.ChildTwoActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -16,7 +19,7 @@ public class ChildOneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_one);
+        setContentView(R.layout.activity_child_main);
     }
 
     @Override
@@ -27,7 +30,7 @@ public class ChildOneActivity extends AppCompatActivity {
 
     public void click(View view){
         if(view.getId() == R.id.btn_childone_one){
-            EventBus.getDefault().post(new MessageEvent(1,"childone"));
+            startActivity(new Intent(getApplicationContext(), ChildTwoActivity.class));
         }
         else if(view.getId() == R.id.btn_childone_two){
             EventBus.getDefault().post(new MessageEvent(2,"childone"));

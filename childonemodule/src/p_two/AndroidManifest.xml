@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.matt.one">
+    package="com.matt.two">
 
     <application>
-        <activity android:name="com.matt.one.ChildOneActivity" />
+        <activity android:name=".ChildTwoActivity" />
     </application>
 
 </manifest>
