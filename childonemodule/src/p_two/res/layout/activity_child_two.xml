@@ -3,16 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ChildTwoActivity">
+    android:layout_height="match_parent">
 
 
     <Button
         android:id="@+id/btn_activity_child_two_one"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:onClick="click"
-        android:text="main"
+        android:onClick="clicktwo"
+        android:text="childTwo"
         />
 
 

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: './pins.gradle'
 
 android {
     compileSdkVersion 26
@@ -22,7 +23,7 @@ android {
 
     sourceSets {
         main {
-            def dirs = ['main', 'p_one', 'p_two']
+            def dirs = ['p_two']
             dirs.each { dir ->
                 java.srcDir("src/$dir/java")
                 res.srcDir("src/$dir/res")
@@ -31,6 +32,7 @@ android {
     }
 
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

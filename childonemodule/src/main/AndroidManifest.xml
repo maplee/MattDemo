@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name="com.matt.one.ChildOneActivity" />
+        <activity android:name="com.matt.two.ChildTwoActivity" />
     </application>
 
 </manifest>

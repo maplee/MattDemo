@@ -12,7 +12,6 @@ import android.widget.Button;
 import com.matt.one.MessageEvent;
 import com.matt.two.ChildTwoActivity;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -41,16 +40,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ChildTwoActivity.class));
             }
         });
-        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        mainBtn.measure(w, h);
-        //获得宽高
-        int viewWidth=mainBtn.getMeasuredWidth();
-        int viewHeight=mainBtn.getMeasuredHeight();
-        if (BuildConfig.DEBUG) {
-            Log.i(TAG, "onCreate: "+viewWidth+","+viewHeight);
-            Log.i(TAG, "onCreate: "+getCallingActivity().toString());
-        }
+//        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+////        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+////        mainBtn.measure(w, h);
+////        //获得宽高
+////        int viewWidth=mainBtn.getMeasuredWidth();
+////        int viewHeight=mainBtn.getMeasuredHeight();
+////        if (BuildConfig.DEBUG) {
+////            Log.i(TAG, "onCreate: "+viewWidth+","+viewHeight);
+////            Log.i(TAG, "onCreate: "+getCallingActivity().toString());
+////        }
 
 
 
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onStart: ");
         }
-        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -71,30 +69,6 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onResume: ");
         }
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (BuildConfig.DEBUG) {
-                    Log.i(TAG, "run: 8");
-                }
-            }
-        },8000);
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (BuildConfig.DEBUG) {
-                    Log.i(TAG, "run: 3");
-                }
-            }
-        },3000);
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (BuildConfig.DEBUG) {
-                    Log.i(TAG, "run: 1");
-                }
-            }
-        });
     }
 
     @Override
@@ -119,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Log.i(TAG, "onStop: ");
         }
-        EventBus.getDefault().post(new MessageEvent(6,"main data"));
 //        EventBus.getDefault().unregister(this);
     }
 

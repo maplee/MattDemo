@@ -10,7 +10,7 @@ import com.matt.one.R;
 
 public class ChildTwoActivity extends AppCompatActivity {
 
-    private static final String TAG = "ChildOneActivity";
+    private static final String TAG = "ChildTwoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class ChildTwoActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    public void click(View view){
+    public void clicktwo(View view){
         if(view.getId() == R.id.btn_activity_child_two_one){
             startActivity(new Intent(getApplicationContext(), ChildOneActivity.class));
         }
